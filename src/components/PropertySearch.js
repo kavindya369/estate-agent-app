@@ -11,11 +11,13 @@ const PropertySearch = () => {
         startDate: '',
         endDate: '',
         postcodeArea: '',
+        saleOrRent: '', 
     });
     const [properties, setProperties] = useState([]);
     const [filteredProperties, setFilteredProperties] = useState([]);
 
     useEffect(() => {
+        // Initialize properties from JSON
         setProperties(propertiesData.properties);
         setFilteredProperties(propertiesData.properties);
     }, []);
@@ -50,7 +52,17 @@ const PropertySearch = () => {
                 formData.postcodeArea
                     ? property.location.toLowerCase().startsWith(formData.postcodeArea.toLowerCase())
                     : true;
-            return matchesPropertyType && matchesPrice && matchesBedrooms && matchesDate && matchesPostcode;
+            const matchesSaleOrRent =
+                formData.saleOrRent ? property.tenure.toLowerCase() === formData.saleOrRent.toLowerCase() : true;
+
+            return (
+                matchesPropertyType &&
+                matchesPrice &&
+                matchesBedrooms &&
+                matchesDate &&
+                matchesPostcode &&
+                matchesSaleOrRent
+            );
         });
 
         setFilteredProperties(filtered);
@@ -58,25 +70,33 @@ const PropertySearch = () => {
 
     return (
         <div className="property-search">
+            {/* Header Section */}
             <div
                 className="search-container"
                 style={{
-                    backgroundImage: 'url(/img1.jpg)',
+                    backgroundImage: 'url(/images/img1.jpg)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     padding: '80px 0',
                 }}
             >
-                <h1 className="text-center text-light">Discover your perfect property with the largest selection available</h1>
+                <h1 className="text-center text-light">
+                    Discover your perfect property with the largest selection available
+                </h1>
                 <div className="container">
                     <h1 className="text-center mb-4 text-dark">Estate Finder</h1>
+                    {/* Search Form */}
                     <form
                         onSubmit={handleSubmit}
                         className="bg-white p-4 rounded shadow-sm"
                         style={{ maxWidth: '800px', margin: '0 auto' }}
                     >
+                        {/* Form Fields */}
+                        {/* Property Type */}
                         <div className="mb-3">
-                            <label htmlFor="propertyType" className="form-label">Property Type</label>
+                            <label htmlFor="propertyType" className="form-label">
+                                Property Type
+                            </label>
                             <select
                                 id="propertyType"
                                 name="propertyType"
@@ -87,14 +107,14 @@ const PropertySearch = () => {
                                 <option value="">Any</option>
                                 <option value="House">House</option>
                                 <option value="Flat">Flat</option>
-                                <option value="Bungalow">Bungalow</option>
-                                <option value="Land">Land</option>
                             </select>
                         </div>
-
+                        {/* Price Range */}
                         <div className="row mb-3">
                             <div className="col-md-6">
-                                <label htmlFor="priceMin" className="form-label">Min Price</label>
+                                <label htmlFor="priceMin" className="form-label">
+                                    Min Price
+                                </label>
                                 <input
                                     type="number"
                                     id="priceMin"
@@ -105,7 +125,9 @@ const PropertySearch = () => {
                                 />
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="priceMax" className="form-label">Max Price</label>
+                                <label htmlFor="priceMax" className="form-label">
+                                    Max Price
+                                </label>
                                 <input
                                     type="number"
                                     id="priceMax"
@@ -116,10 +138,12 @@ const PropertySearch = () => {
                                 />
                             </div>
                         </div>
-
+                        {/* Bedrooms */}
                         <div className="row mb-3">
                             <div className="col-md-6">
-                                <label htmlFor="minBedrooms" className="form-label">Min Bedrooms</label>
+                                <label htmlFor="minBedrooms" className="form-label">
+                                    Min Bedrooms
+                                </label>
                                 <input
                                     type="number"
                                     id="minBedrooms"
@@ -130,7 +154,9 @@ const PropertySearch = () => {
                                 />
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="maxBedrooms" className="form-label">Max Bedrooms</label>
+                                <label htmlFor="maxBedrooms" className="form-label">
+                                    Max Bedrooms
+                                </label>
                                 <input
                                     type="number"
                                     id="maxBedrooms"
@@ -141,10 +167,12 @@ const PropertySearch = () => {
                                 />
                             </div>
                         </div>
-
+                        {/* Date Range */}
                         <div className="row mb-3">
                             <div className="col-md-6">
-                                <label htmlFor="startDate" className="form-label">Start Date</label>
+                                <label htmlFor="startDate" className="form-label">
+                                    Start Date
+                                </label>
                                 <input
                                     type="date"
                                     id="startDate"
@@ -155,7 +183,9 @@ const PropertySearch = () => {
                                 />
                             </div>
                             <div className="col-md-6">
-                                <label htmlFor="endDate" className="form-label">End Date</label>
+                                <label htmlFor="endDate" className="form-label">
+                                    End Date
+                                </label>
                                 <input
                                     type="date"
                                     id="endDate"
@@ -166,9 +196,11 @@ const PropertySearch = () => {
                                 />
                             </div>
                         </div>
-
+                        {/* Postcode */}
                         <div className="mb-3">
-                            <label htmlFor="postcodeArea" className="form-label">Postcode Area</label>
+                            <label htmlFor="postcodeArea" className="form-label">
+                                Postcode Area
+                            </label>
                             <input
                                 type="text"
                                 id="postcodeArea"
@@ -179,37 +211,65 @@ const PropertySearch = () => {
                                 placeholder="e.g., BR1, NW1"
                             />
                         </div>
+                        {/* Sale or Rent */}
+                        <div className="mb-3">
+                            <label htmlFor="saleOrRent" className="form-label">
+                                Sale or Rent
+                            </label>
+                            <select
+                                id="saleOrRent"
+                                name="saleOrRent"
+                                className="form-select"
+                                value={formData.saleOrRent}
+                                onChange={handleInputChange}
+                            >
+                                <option value="">Any</option>
+                                <option value="Freehold">For Sale</option>
+                                <option value="Leasehold">For Rent</option>
+                            </select>
+                        </div>
 
-                        <button type="submit" className="btn btn-primary w-100">Search</button>
+                        {/* Submit Button */}
+                        <button type="submit" className="btn btn-primary w-100">
+                            Search
+                        </button>
                     </form>
                 </div>
             </div>
 
-            <div className="container mt-5">
-                <h2 className="text-center text-dark mb-4">Search Results</h2>
-                <div className="row">
-                    {filteredProperties.length ? (
-                        filteredProperties.map((property) => (
-                            <div key={property.id} className="col-md-4 mb-4">
-                                <div className="card shadow-sm">
-                                    <img
-                                        src={property.image || '/default-image.jpg'}
-                                        className="card-img-top"
-                                        alt={property.location}
-                                        style={{ height: '180px', objectFit: 'cover' }}
-                                    />
-                                    <div className="card-body">
-                                        <h5 className="card-title">{property.location}</h5>
-                                        <p className="card-text">{property.description}</p>
-                                        <small className="d-block mb-3">Price: £{property.price}</small>
-                                        <a href={property.url} className="btn btn-link">View Details</a>
+            {/* Results Section */}
+            <div>
+                <div className="container mt-5">
+                    <h2 className="text-center text-dark mb-4">Search Results</h2>
+                    <div className="row">
+                        {filteredProperties.length ? (
+                            filteredProperties.map((property) => (
+                                <div key={property.id} className="col-md-4 mb-4">
+                                    <div className="card shadow-sm">
+                                        <img
+                                            src={property.picture || '/default-image.jpg'}
+                                            className="card-img-top"
+                                            alt={property.location}
+                                            style={{ height: '180px', objectFit: 'cover' }}
+                                        />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{property.location}</h5>
+                                            <small className="d-block mb-3">
+                                                Price: £{property.price}
+                                            </small>
+                                            <a href={property.url} className="btn btn-link">
+                                                View Details
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="text-center w-100">No properties match your search criteria.</p>
-                    )}
+                            ))
+                        ) : (
+                            <p className="text-center w-100">
+                                No properties match your search criteria.
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
