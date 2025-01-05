@@ -78,10 +78,6 @@ const PropertySearch = () => {
     });
   };
 
-  const clearFavorites = () => {
-    setFavorites([]);
-  };
-
   return (
     <div className="property-search container mt-5">
       <SearchForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
@@ -90,7 +86,7 @@ const PropertySearch = () => {
           <PropertyList properties={filteredProperties} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
         </div>
         <div className="col-md-6">
-          <FavouriteList properties={properties} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} clearFavorites={clearFavorites} />
+          <FavouriteList properties={properties} favorites={favorites} />
         </div>
       </div>
     </div>
