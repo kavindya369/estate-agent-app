@@ -148,7 +148,6 @@ const PropertySearch = () => {
       {/* Search form component */}
       <SearchForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
 
-      {/* Main row containing Property List and Favorite List */}
       <div className="row">
         <div className="col-md-6">
           {/* Property list component */}
