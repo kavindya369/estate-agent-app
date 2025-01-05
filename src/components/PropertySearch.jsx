@@ -5,6 +5,7 @@ import PropertyList from './PropertyList';
 import FavouriteList from './FavouriteList';
 
 const PropertySearch = () => {
+  // State to manage form input values
   const [formData, setFormData] = useState({
     propertyType: '',
     priceMin: '',
@@ -16,12 +17,16 @@ const PropertySearch = () => {
     postcodeArea: '',
     saleOrRent: '',
   });
+
+  // State to hold all properties and filtered properties
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
+
+  // State to manage the user's favorite properties
   const [favorites, setFavorites] = useState([]);
 
+  // Effect hook to initialize properties from the JSON file and saved favorites from localStorage
   useEffect(() => {
-    // Initialize properties from JSON
     setProperties(propertiesData.properties);
     setFilteredProperties(propertiesData.properties);
 
@@ -29,13 +34,14 @@ const PropertySearch = () => {
     setFavorites(savedFavorites);
   }, []);
 
+  // Effect hook to save favorites to localStorage whenever the favorites state changes
   useEffect(() => {
-    // Save favorites to localStorage 
     if (favorites.length) {
       localStorage.setItem('favorites', JSON.stringify(favorites));
     }
   }, [favorites]);
 
+  // Handle input changes in the search form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -44,10 +50,12 @@ const PropertySearch = () => {
     }));
   };
 
+  // Handle form submission to filter properties based on search criteria
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const filtered = properties.filter((property) => {
+      // Filter conditions based on form data
       const matchesPropertyType = formData.propertyType
         ? property.type.toLowerCase() === formData.propertyType.toLowerCase()
         : true;
@@ -78,59 +86,72 @@ const PropertySearch = () => {
     setFilteredProperties(filtered);
   };
 
+  // Toggle a property as a favorite
   const handleFavoriteToggle = (propertyId) => {
     setFavorites((prevFavorites) => {
       let updatedFavorites;
 
+      // If the property is already in favorites, remove it; otherwise, add it
       if (prevFavorites.includes(propertyId)) {
         updatedFavorites = prevFavorites.filter((id) => id !== propertyId);
       } else {
         updatedFavorites = [...prevFavorites, propertyId];
       }
 
+      // Save the updated favorites to localStorage
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
       return updatedFavorites;
     });
   };
 
+  // Handle drag start event by storing the dragged property's ID
   const onDragStart = (e, propertyId) => {
-    e.dataTransfer.setData("propertyId", propertyId); // Store the dragged property's ID
+    e.dataTransfer.setData("propertyId", propertyId);
   };
 
+  // Handle drop event: add or remove property from favorites based on the target (isFavoriteList)
   const onDrop = (e, isFavoriteList) => {
     const propertyId = e.dataTransfer.getData("propertyId");
     const propertyExistsInFavorites = favorites.includes(propertyId);
 
     if (isFavoriteList) {
+      // If dropping into the favorite list and the property isn't already a favorite, add it
       if (!propertyExistsInFavorites) {
         setFavorites((prevFavorites) => [...prevFavorites, propertyId]);
       } else {
         alert("This property is already in your favorites list.");
       }
     } else {
+      // If dropping outside the favorite list and the property is a favorite, remove it
       if (propertyExistsInFavorites) {
         setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== propertyId));
       }
     }
 
-    e.preventDefault(); 
+    e.preventDefault();
   };
 
+  // Handle drag over event to allow dropping
   const onDragOver = (e) => {
     e.preventDefault();
   };
 
+  // Clear all favorite properties
   const clearFavorites = () => {
     setFavorites([]);
-    localStorage.setItem('favorites', JSON.stringify([])); 
+    localStorage.setItem('favorites', JSON.stringify([]));
   };
 
   return (
     <div className="property-search container mt-5">
+      {/* Search form component */}
       <SearchForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
+
+      {/* Main row containing Property List and Favorite List */}
       <div className="row">
         <div className="col-md-6">
+          {/* Property list component */}
           <PropertyList
             properties={filteredProperties}
             favorites={favorites}
@@ -141,6 +162,7 @@ const PropertySearch = () => {
           />
         </div>
         <div className="col-md-6">
+          {/* Favorite list component */}
           <FavouriteList
             properties={properties}
             favorites={favorites}

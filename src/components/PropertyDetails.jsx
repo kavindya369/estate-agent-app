@@ -31,7 +31,7 @@ const PropertyDetails = () => {
 
       {/* Image Gallery */}
       <div className="row justify-content-center">
-        <div className="col-12">
+        <div className="col-12 col-md-8 col-lg-6">
           <ImageGallery
             items={property.picture.map((pic) => ({
               original: pic,
@@ -84,7 +84,7 @@ const PropertyDetails = () => {
         {/* Floor Plan */}
         <TabPanel>
           <div className="row justify-content-center">
-            <div className="col-12">
+            <div className="col-12 col-md-8 col-lg-6">
               <h3>Floor Plan</h3>
               <img
                 src={property.floorPlan}
@@ -98,7 +98,7 @@ const PropertyDetails = () => {
         {/* Google Map */}
         <TabPanel>
           <div className="row justify-content-center">
-            <div className="col-12">
+            <div className="col-12 col-md-8 col-lg-6">
               <h3>Location Map</h3>
               <iframe
                 title="Google Map"

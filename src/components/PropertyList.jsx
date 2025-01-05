@@ -15,14 +15,14 @@ const PropertyList = ({ properties, favorites, onFavoriteToggle, onDragStart, on
               <div
                 className="card shadow-sm d-flex flex-column"
                 draggable
-                onDragStart={(e) => onDragStart(e, property.id)} // Handle the start of drag event
+                onDragStart={(e) => onDragStart(e, property.id)}
               >
                 {/* Property image */}
                 <img
                   src={property.picture[0] || "/default-image.jpg"}
                   className="card-img-top"
                   alt={property.location}
-                  style={{ height: "180px", objectFit: "cover" }} 
+                  style={{ height: "180px", objectFit: "cover" }}
                 />
 
                 <div className="card-body d-flex flex-column">
@@ -37,7 +37,7 @@ const PropertyList = ({ properties, favorites, onFavoriteToggle, onDragStart, on
                     {/* Favorite button toggles between adding/removing the property from favorites */}
                     <button
                       className={`btn ${favorites.includes(property.id) ? "btn-danger" : "btn-outline-danger"}`}
-                      onClick={() => onFavoriteToggle(property.id)} // Toggle favorite on click
+                      onClick={() => onFavoriteToggle(property.id)}
                     >
                       {favorites.includes(property.id) ? "Remove from Favorites" : "Add to Favorites"}
                     </button>
