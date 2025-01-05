@@ -24,7 +24,18 @@ const PropertySearch = () => {
     // Initialize properties from JSON
     setProperties(propertiesData.properties);
     setFilteredProperties(propertiesData.properties);
+
+    // Load favorites from localStorage when the component mounts
+    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavorites(savedFavorites);
   }, []);
+
+  useEffect(() => {
+    // Save favorites to localStorage whenever it changes
+    if (favorites.length) {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+  }, [favorites]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,11 +81,18 @@ const PropertySearch = () => {
 
   const handleFavoriteToggle = (propertyId) => {
     setFavorites((prevFavorites) => {
+      let updatedFavorites;
+
       if (prevFavorites.includes(propertyId)) {
-        return prevFavorites.filter((id) => id !== propertyId);
+        updatedFavorites = prevFavorites.filter((id) => id !== propertyId);
       } else {
-        return [...prevFavorites, propertyId];
+        updatedFavorites = [...prevFavorites, propertyId];
       }
+
+      // Update localStorage with the new list
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+
+      return updatedFavorites;
     });
   };
 
@@ -107,6 +125,7 @@ const PropertySearch = () => {
 
   const clearFavorites = () => {
     setFavorites([]);
+    localStorage.setItem('favorites', JSON.stringify([])); // Clear from localStorage as well
   };
 
   return (
