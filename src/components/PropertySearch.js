@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import propertiesData from '../assets/properties.json';
 import SearchForm from './SearchForm';
 import PropertyList from './PropertyList';
+import FavouriteList from './FavouriteList';
 
 const PropertySearch = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const PropertySearch = () => {
   });
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     // Initialize properties from JSON
@@ -66,10 +68,27 @@ const PropertySearch = () => {
     setFilteredProperties(filtered);
   };
 
+  const handleFavoriteToggle = (propertyId) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.includes(propertyId)) {
+        return prevFavorites.filter((id) => id !== propertyId);
+      } else {
+        return [...prevFavorites, propertyId];
+      }
+    });
+  };
+
   return (
-    <div className="property-search">
+    <div className="property-search container mt-5">
       <SearchForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
-      <PropertyList properties={filteredProperties} />
+      <div className="row">
+        <div className="col-md-6">
+          <PropertyList properties={filteredProperties} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        </div>
+        <div className="col-md-6">
+          <FavouriteList properties={properties} favorites={favorites} />
+        </div>
+      </div>
     </div>
   );
 };
