@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const FavouriteList = ({ properties, favorites, onDragStart, onDrop, onDragOver }) => {
+const FavouriteList = ({ properties, favorites, onFavoriteToggle, onDragStart, onDrop, onDragOver, clearFavorites }) => {
   const favoriteProperties = properties.filter((property) => favorites.includes(property.id));
 
   return (
@@ -11,6 +11,9 @@ const FavouriteList = ({ properties, favorites, onDragStart, onDrop, onDragOver 
       onDragOver={onDragOver}
     >
       <h2 className="text-center text-dark mb-4">Favorite Properties</h2>
+      <button className="btn btn-outline-danger mb-4" onClick={clearFavorites}>
+        Clear All
+      </button>
       <div className="row">
         {favoriteProperties.length ? (
           favoriteProperties.map((property) => (
@@ -31,6 +34,12 @@ const FavouriteList = ({ properties, favorites, onDragStart, onDrop, onDragOver 
                   <h6 className="card-title">{property.location}</h6>
                   <small className="d-block mb-3">Price: £{property.price}</small>
                   <div className="mt-auto">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => onFavoriteToggle(property.id)}
+                    >
+                      Remove
+                    </button>
                     <Link to={`/property/${property.id}`} className="btn btn-link">
                       View Details
                     </Link>

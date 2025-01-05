@@ -98,11 +98,15 @@ const PropertySearch = () => {
       }
     }
 
-    e.preventDefault(); 
+    e.preventDefault(); // Prevent the default action of the drop
   };
 
   const onDragOver = (e) => {
     e.preventDefault();
+  };
+
+  const clearFavorites = () => {
+    setFavorites([]);
   };
 
   return (
@@ -123,9 +127,11 @@ const PropertySearch = () => {
           <FavouriteList
             properties={properties}
             favorites={favorites}
+            onFavoriteToggle={handleFavoriteToggle}
             onDragStart={onDragStart}
             onDrop={(e) => onDrop(e, true)}
             onDragOver={onDragOver}
+            clearFavorites={clearFavorites}
           />
         </div>
       </div>
