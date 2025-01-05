@@ -25,13 +25,12 @@ const PropertySearch = () => {
     setProperties(propertiesData.properties);
     setFilteredProperties(propertiesData.properties);
 
-    // Load favorites from localStorage when the component mounts
     const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setFavorites(savedFavorites);
   }, []);
 
   useEffect(() => {
-    // Save favorites to localStorage whenever it changes
+    // Save favorites to localStorage 
     if (favorites.length) {
       localStorage.setItem('favorites', JSON.stringify(favorites));
     }
@@ -89,7 +88,6 @@ const PropertySearch = () => {
         updatedFavorites = [...prevFavorites, propertyId];
       }
 
-      // Update localStorage with the new list
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
       return updatedFavorites;
@@ -116,7 +114,7 @@ const PropertySearch = () => {
       }
     }
 
-    e.preventDefault(); // Prevent the default action of the drop
+    e.preventDefault(); 
   };
 
   const onDragOver = (e) => {
@@ -125,7 +123,7 @@ const PropertySearch = () => {
 
   const clearFavorites = () => {
     setFavorites([]);
-    localStorage.setItem('favorites', JSON.stringify([])); // Clear from localStorage as well
+    localStorage.setItem('favorites', JSON.stringify([])); 
   };
 
   return (
