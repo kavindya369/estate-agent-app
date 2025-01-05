@@ -1,28 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const FavoriteList = ({ properties, favorites }) => {
+const FavouriteList = ({ properties, favorites, onDragStart, onDrop, onDragOver }) => {
   const favoriteProperties = properties.filter((property) => favorites.includes(property.id));
 
   return (
-    <div className="container mt-5">
+    <div
+      className="container mt-5"
+      onDrop={onDrop}
+      onDragOver={onDragOver}
+    >
       <h2 className="text-center text-dark mb-4">Favorite Properties</h2>
       <div className="row">
         {favoriteProperties.length ? (
           favoriteProperties.map((property) => (
-            <div key={property.id} className="col-md-6 mb-4 d-flex"> 
-              <div className="card shadow-sm d-flex flex-column">
+            <div key={property.id} className="col-md-6 mb-4 d-flex">
+              <div
+                className="card shadow-sm d-flex flex-column"
+                draggable
+                onDragStart={(e) => onDragStart(e, property.id)}
+              >
                 <img
-                  src={property.picture[0] || '/default-image.jpg'}
+                  src={property.picture[0] || "/default-image.jpg"}
                   className="card-img-top"
                   alt={property.location}
-                  style={{ height: '180px', objectFit: 'cover' }}
+                  style={{ height: "180px", objectFit: "cover" }}
                 />
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{property.shortDescription}</h5>
                   <h6 className="card-title">{property.location}</h6>
                   <small className="d-block mb-3">Price: £{property.price}</small>
-
                   <div className="mt-auto">
                     <Link to={`/property/${property.id}`} className="btn btn-link">
                       View Details
@@ -40,4 +47,4 @@ const FavoriteList = ({ properties, favorites }) => {
   );
 };
 
-export default FavoriteList;
+export default FavouriteList;

@@ -78,15 +78,55 @@ const PropertySearch = () => {
     });
   };
 
+  const onDragStart = (e, propertyId) => {
+    e.dataTransfer.setData("propertyId", propertyId); // Store the dragged property's ID
+  };
+
+  const onDrop = (e, isFavoriteList) => {
+    const propertyId = e.dataTransfer.getData("propertyId");
+    const propertyExistsInFavorites = favorites.includes(propertyId);
+
+    if (isFavoriteList) {
+      if (!propertyExistsInFavorites) {
+        setFavorites((prevFavorites) => [...prevFavorites, propertyId]);
+      } else {
+        alert("This property is already in your favorites list.");
+      }
+    } else {
+      if (propertyExistsInFavorites) {
+        setFavorites((prevFavorites) => prevFavorites.filter((id) => id !== propertyId));
+      }
+    }
+
+    e.preventDefault(); 
+  };
+
+  const onDragOver = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="property-search container mt-5">
       <SearchForm formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
       <div className="row">
         <div className="col-md-6">
-          <PropertyList properties={filteredProperties} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+          <PropertyList
+            properties={filteredProperties}
+            favorites={favorites}
+            onFavoriteToggle={handleFavoriteToggle}
+            onDragStart={onDragStart}
+            onDrop={(e) => onDrop(e, false)}
+            onDragOver={onDragOver}
+          />
         </div>
         <div className="col-md-6">
-          <FavouriteList properties={properties} favorites={favorites} />
+          <FavouriteList
+            properties={properties}
+            favorites={favorites}
+            onDragStart={onDragStart}
+            onDrop={(e) => onDrop(e, true)}
+            onDragOver={onDragOver}
+          />
         </div>
       </div>
     </div>
