@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PropertySearch from './components/PropertySearch';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import PropertyDetails from './components/PropertyDetails';
 
-const App = () => {
+function App() {
   return (
-    <div className="app">
-      <PropertySearch/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<PropertySearch />} />
+        <Route path="/property/:id" element={<PropertyDetails />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
