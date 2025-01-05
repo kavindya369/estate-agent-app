@@ -6,7 +6,8 @@
       "bedrooms": 3,
       "price": 750000,
       "tenure": "Freehold",
-      "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+      "description": "Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior.",
+      "shortDescription": "A charming three-bedroom semi-detached family home near Petts Wood station.",
       "location": "Petts Wood Road, Petts Wood, Orpington BR5",
       "picture": ["/images/prop1pic1small.jpg", "/images/prop1pic2.jpg", "/images/prop1pic3.jpg", "/images/prop1pic4.jpg", "/images/prop1pic5.jpg", "/images/prop1pic6.jpg"],
       "url": "properties/prop1.html",
@@ -15,8 +16,9 @@
         "day": 12,
         "year": 2022
       },
-      "listingType": "For Sale"
-    },    
+      "listingType": "For Sale",
+      "floorPlan": "/images/prop1floorplan.jpg"
+    },
     {
       "id": "prop2",
       "type": "Flat",
@@ -24,6 +26,7 @@
       "price": 1500,
       "tenure": "Freehold",
       "description": "Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi-folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three-piece suite with a shower attachment over the bath. There is also a separate wet room.",
+      "shortDescription": "A beautifully decorated two-bedroom garden flat with bi-folding doors.",
       "location": "Crofton Road Orpington BR6",
       "picture": ["/images/prop2pic1small.jpg", "/images/prop2pic2.jpg", "/images/prop2pic3.jpg", "/images/prop2pic4.jpg", "/images/prop2pic5.jpg", "/images/prop2pic6.jpg"],
       "url": "properties/prop2.html",
@@ -32,7 +35,8 @@
         "day": 14,
         "year": 2022
       },
-      "listingType": "For Rent"
+      "listingType": "For Rent",
+      "floorPlan": "/images/prop2floorplan.jpg"
     },
     {
       "id": "prop3",
@@ -41,6 +45,7 @@
       "price": 950000,
       "tenure": "Freehold",
       "description": "A spacious four-bedroom detached house located in a quiet cul-de-sac. This property boasts a large living room, a modern kitchen, and a private garden with ample space for entertaining. The master bedroom has an en-suite bathroom, and there are three additional well-sized bedrooms. The house is close to local schools and public transport links.",
+      "shortDescription": "Spacious four-bedroom detached house with private garden and en-suite master.",
       "location": "Greenwood Close, Orpington BR6",
       "picture": ["/images/prop3pic1small.jpg", "/images/prop3pic2.jpg", "/images/prop3pic3.jpg", "/images/prop3pic4.jpg", "/images/prop3pic5.jpg", "/images/prop3pic6.jpg"],
       "url": "properties/prop3.html",
@@ -49,7 +54,8 @@
         "day": 10,
         "year": 2022
       },
-      "listingType": "For Sale"
+      "listingType": "For Sale",
+      "floorPlan": "/images/prop3floorplan.jpg"
     },
     {
       "id": "prop4",
@@ -58,6 +64,7 @@
       "price": 1200,
       "tenure": "Leasehold",
       "description": "This well-presented one-bedroom flat is situated in a central location close to local amenities and public transport. The flat features a spacious living area, a fully fitted kitchen, a modern bathroom, and a double bedroom with built-in storage. Ideal for first-time buyers or investors.",
+      "shortDescription": "Well-presented one-bedroom flat near local amenities and transport links.",
       "location": "High Street, Orpington BR5",
       "picture": ["/images/prop4pic1small.jpg", "/images/prop4pic2.jpg", "/images/prop4pic3.jpg", "/images/prop4pic4.jpg", "/images/prop4pic5.jpg", "/images/prop4pic6.jpg"],
       "url": "properties/prop4.html",
@@ -66,7 +73,8 @@
         "day": 15,
         "year": 2022
       },
-      "listingType": "For Rent"
+      "listingType": "For Rent",
+      "floorPlan": "/images/prop4floorplan.jpg"
     },
     {
       "id": "prop5",
@@ -75,6 +83,7 @@
       "price": 1200000,
       "tenure": "Freehold",
       "description": "A stunning five-bedroom family home offering a large open-plan living space, a contemporary kitchen, and a private garden with a swimming pool. The property includes a master suite with a walk-in wardrobe and en-suite bathroom, along with four additional bedrooms and family bathroom. The house is located in a prestigious area with excellent schools and amenities nearby.",
+      "shortDescription": "Stunning five-bedroom family home with open-plan living and swimming pool.",
       "location": "Chesterfield Road, Orpington BR6",
       "picture": ["/images/prop5pic1small.jpg", "/images/prop5pic2.jpg", "/images/prop5pic3.jpg", "/images/prop5pic4.jpg", "/images/prop5pic5.jpg", "/images/prop5pic6.jpg"],
       "url": "properties/prop5.html",
@@ -83,7 +92,8 @@
         "day": 1,
         "year": 2022
       },
-      "listingType": "For Sale"
+      "listingType": "For Sale",
+      "floorPlan": "/images/prop5floorplan.jpg"
     },
     {
       "id": "prop6",
@@ -92,6 +102,7 @@
       "price": 1800,
       "tenure": "Leasehold",
       "description": "A spacious and modern three-bedroom flat with views over a scenic park. The property offers a large living room, a fitted kitchen with integrated appliances, a family bathroom, and an en-suite bathroom in the master bedroom. Located within walking distance of public transport and local amenities.",
+      "shortDescription": "Modern three-bedroom flat with park views and en-suite master bedroom.",
       "location": "Park View, Orpington BR5",
       "picture": ["/images/prop6pic1small.jpg", "/images/prop6pic2.jpg", "/images/prop6pic3.jpg", "/images/prop6pic4.jpg", "/images/prop6pic5.jpg", "/images/prop6pic6.jpg"],
       "url": "properties/prop6.html",
@@ -100,7 +111,8 @@
         "day": 5,
         "year": 2022
       },
-      "listingType": "For Rent"
+      "listingType": "For Rent",
+      "floorPlan": "/images/prop6floorplan.jpg"
     },
     {
       "id": "prop7",
@@ -109,6 +121,7 @@
       "price": 425000,
       "tenure": "Freehold",
       "description": "A charming two-bedroom terraced house with a private rear garden and off-street parking. The property features a cosy living room, a fully fitted kitchen, and a family bathroom. Ideal for first-time buyers or those looking for a small family home.",
+      "shortDescription": "Charming two-bedroom terraced house with private garden and off-street parking.",
       "location": "Kings Road, Orpington BR5",
       "picture": ["/images/prop7pic1small.jpg", "/images/prop7pic2.jpg", "/images/prop7pic3.jpg", "/images/prop7pic4.jpg", "/images/prop7pic5.jpg", "/images/prop7pic6.jpg"],
       "url": "properties/prop7.html",
@@ -117,7 +130,8 @@
         "day": 20,
         "year": 2022
       },
-      "listingType": "For Rent"
+      "listingType": "For Rent",
+      "floorPlan": "/images/prop7floorplan.jpg"
     }
   ]
 }

@@ -12,7 +12,9 @@ const PropertyList = ({ properties }) => {
               <div className="card shadow-sm">
                 <img src={property.picture[0] || '/default-image.jpg'} className="card-img-top" alt={property.location} style={{ height: '180px', objectFit: 'cover' }} />
                 <div className="card-body">
-                  <h5 className="card-title">{property.location}</h5>
+                <h5 className="card-title">{property.shortDescription}</h5>
+                <br />
+                  <h6 className="card-title">{property.location}</h6>
                   <small className="d-block mb-3">Price: £{property.price}</small>
                   <Link to={`/property/${property.id}`} className="btn btn-link">View Details</Link>
                 </div>
