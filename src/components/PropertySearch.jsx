@@ -55,42 +55,47 @@ const PropertySearch = () => {
     e.preventDefault();
 
     const filtered = properties.filter((property) => {
-            // Filter conditions based on form data
+      // Filter conditions based on form data
       const matchesPropertyType =
         formData.propertyType && formData.propertyType.toLowerCase() !== "any"
           ? property.type.toLowerCase() === formData.propertyType.toLowerCase()
           : true;
-    
+
       const matchesPrice =
-        (formData.priceMin ? property.price >= parseFloat(formData.priceMin) : true) &&
-        (formData.priceMax ? property.price <= parseFloat(formData.priceMax) : true);
-    
+        formData.priceMin || formData.priceMax
+          ? (formData.priceMin ? property.price >= parseFloat(formData.priceMin) : true) &&
+          (formData.priceMax ? property.price <= parseFloat(formData.priceMax) : true)
+          : true;
+
       const matchesBedrooms =
-        (formData.minBedrooms ? property.bedrooms >= parseInt(formData.minBedrooms) : true) &&
-        (formData.maxBedrooms ? property.bedrooms <= parseInt(formData.maxBedrooms) : true);
-    
+        formData.minBedrooms || formData.maxBedrooms
+          ? (formData.minBedrooms ? property.bedrooms >= parseInt(formData.minBedrooms) : true) &&
+          (formData.maxBedrooms ? property.bedrooms <= parseInt(formData.maxBedrooms) : true)
+          : true;
+
       const matchesDate =
         formData.startDate || formData.endDate
           ? (formData.startDate
-              ? new Date(`${property.added.year}-${property.added.month}-${property.added.day}`) >=
-                new Date(formData.startDate)
-              : true) &&
-            (formData.endDate
-              ? new Date(`${property.added.year}-${property.added.month}-${property.added.day}`) <=
-                new Date(formData.endDate)
-              : true)
+            ? new Date(`${property.added.year}-${property.added.month}-${property.added.day}`) >=
+            new Date(formData.startDate)
+            : true) &&
+          (formData.endDate
+            ? new Date(`${property.added.year}-${property.added.month}-${property.added.day}`) <=
+            new Date(formData.endDate)
+            : true)
           : true;
-    
+
       const matchesPostcode =
         formData.postcodeArea
-          ? property.location.toLowerCase().startsWith(formData.postcodeArea.toLowerCase())
+          ? (property.location.match(/\b[A-Z]{1,2}\d{1,2}/) || [])[0]?.toLowerCase() ===
+          formData.postcodeArea.toLowerCase()
           : true;
-    
+
       const matchesSaleOrRent =
         formData.saleOrRent
           ? property.tenure.toLowerCase() === formData.saleOrRent.toLowerCase()
           : true;
-    
+
       return (
         matchesPropertyType &&
         matchesPrice &&
