@@ -131,7 +131,8 @@ const SearchForm = ({ formData, handleInputChange, handleSubmit }) => {
           style={{ marginTop: '20px' }}
         >
           Search
-        </Button>      </form>
+        </Button>
+          </form>
     </div>
   );
 };
