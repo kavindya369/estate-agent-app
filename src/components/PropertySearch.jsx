@@ -3,6 +3,7 @@ import propertiesData from '../assets/properties.json';
 import SearchForm from './SearchForm';
 import PropertyList from './PropertyList';
 import FavouriteList from './FavouriteList';
+import Footer from './Footer';
 
 const PropertySearch = () => {
   // State to manage form input values
@@ -195,6 +196,8 @@ const PropertySearch = () => {
             clearFavorites={clearFavorites}
           />
         </div>
+        <Footer />
+
       </div>
     </div>
   );

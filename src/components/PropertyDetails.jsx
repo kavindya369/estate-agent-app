@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "react-tabs/style/react-tabs.css";
 import propertiesData from '../assets/properties.json';
+import Fotter from './Footer';
 
 const PropertyDetails = () => {
   const { id } = useParams();
@@ -115,6 +116,7 @@ const PropertyDetails = () => {
           </div>
         </TabPanel>
       </Tabs>
+      <Fotter />
     </div>
   );
 };
