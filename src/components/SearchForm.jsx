@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';  
 import { NumericFormat } from 'react-number-format';  
+import { Button } from '@mui/material';
 
 const SearchForm = ({ formData, handleInputChange, handleSubmit }) => {
   // Custom options for the select dropdowns
@@ -122,8 +123,15 @@ const SearchForm = ({ formData, handleInputChange, handleSubmit }) => {
         </div>
 
         {/* Submit button to perform the search */}
-        <button type="submit" className="btn btn-primary w-100">Search</button>
-      </form>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          fullWidth
+          style={{ marginTop: '20px' }}
+        >
+          Search
+        </Button>      </form>
     </div>
   );
 };
