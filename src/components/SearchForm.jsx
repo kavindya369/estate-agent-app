@@ -1,7 +1,8 @@
 import React from 'react';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";  // Import datepicker styles
-import Select from 'react-select';  // Import react-select
+import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select';  
+import { NumericFormat } from 'react-number-format';  
 
 const SearchForm = ({ formData, handleInputChange, handleSubmit }) => {
   // Custom options for the select dropdowns
@@ -40,11 +41,27 @@ const SearchForm = ({ formData, handleInputChange, handleSubmit }) => {
         <div className="row mb-3">
           <div className="col-12 col-md-6">
             <label htmlFor="priceMin" className="form-label">Min Price</label>
-            <input type="number" id="priceMin" name="priceMin" className="form-control" value={formData.priceMin} onChange={handleInputChange} />
+            <NumericFormat
+              id="priceMin"
+              name="priceMin"
+              className="form-control"
+              value={formData.priceMin}
+              onValueChange={values => handleInputChange({ target: { name: 'priceMin', value: values.value } })}
+              thousandSeparator={true}
+              prefix="£"
+            />
           </div>
           <div className="col-12 col-md-6">
             <label htmlFor="priceMax" className="form-label">Max Price</label>
-            <input type="number" id="priceMax" name="priceMax" className="form-control" value={formData.priceMax} onChange={handleInputChange} />
+            <NumericFormat
+              id="priceMax"
+              name="priceMax"
+              className="form-control"
+              value={formData.priceMax}
+              onValueChange={values => handleInputChange({ target: { name: 'priceMax', value: values.value } })}
+              thousandSeparator={true}
+              prefix="£"
+            />
           </div>
         </div>
 
