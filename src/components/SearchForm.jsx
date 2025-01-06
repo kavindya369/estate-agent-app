@@ -19,7 +19,7 @@ const SearchForm = ({ formData, handleInputChange, handleSubmit }) => {
   return (
     <div className="search-container" style={{ backgroundImage: 'url(/images/img1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', padding: '80px 0' }}>
       <h1 className="text-center text-light">Discover your perfect property with the largest selection available</h1>
-      <h1 className="text-center mb-4 text-dark">Estate Finder</h1>
+      <h1 className="text-center mb-4 text-dark fst-italic">Estate Finder</h1>
 
       {/* Main form container */}
       <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm" style={{ maxWidth: '800px', margin: '0 auto' }}>
